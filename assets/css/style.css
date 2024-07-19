@@ -1018,6 +1018,16 @@ ul.wp-block-rss a {
   }
 }
 
+/* cursor rules */
+
+@media (max-width: 768px) {
+  .cursor,
+  .cursor2 {
+      display: none;
+  }
+}
+
+
 /*=================================
     02. Reset
 ==================================*/
@@ -1509,6 +1519,72 @@ textarea.is-invalid {
   background-color: transparent;
   color: inherit;
 }
+
+/* mobile slider and header */
+
+/* General Styles */
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff; /* Make the menu button white */
+}
+
+.slider-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slider-menu.active {
+  right: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+}
+
+.slider-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-nav li {
+  margin-bottom: 20px;
+}
+
+.slider-nav li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Media Queries */
+@media (min-width: 992px) {
+  .menu-button {
+      display: none;
+  }
+
+  .slider-menu {
+      display: none;
+  }
+}
+
 
 /*------------------- 2.4. Slider -------------------*/
 .swiper-wrapper.row {
@@ -2822,7 +2898,7 @@ textarea.is-invalid {
 }
 
 .sub-title:has(img) {
-  margin-top: 0;
+  margin-top: 60px;
 }
 
 .sub-title.sub-title2 {
@@ -3344,7 +3420,7 @@ hr.title-line {
   height: 100%;
   width: 100%;
   mix-blend-mode: hue;
-  background: var(--theme-color);
+  /* background: var(--theme-color);   */
   top: 0;
 }
 
@@ -16856,6 +16932,22 @@ span.select2-selection.select2-selection--single:focus {
 /* contact area start ----------------------*/
 /*------------------- 4.00. About  -------------------*/
 /* About 1 ---------------------------------- */
+
+/* about us mobile image hide */
+/* Add this to your existing CSS */
+.hide-on-mobile {
+  /* Ensure the image is visible by default */
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+      /* Hide the image on screens 768px wide or smaller */
+      display: none;
+  }
+}
+
+
 .img-box1 {
   position: relative;
   z-index: 2;
@@ -21211,51 +21303,51 @@ span.select2-selection.select2-selection--single:focus {
   text-fill-color: transparent;
 }
 
+/* General Styles */
 .testimonial-container {
   position: relative;
   max-width: 600px;
-  height: 320px; /* Adjusted height */
+  margin: 20px auto 10px; /* Added margin-top and reduced margin-bottom */
   overflow: hidden;
 }
 
 .testimonial-content {
-  position: absolute;
-  top: 50%;
-  left: 0;
+  position: relative;
   width: 100%;
-  padding: 30px; /* Increased padding */
+  padding: 20px; /* Adjusted padding */
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
-  transform: translateY(-50%) translateX(100%);
+  transform: translateX(100%);
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  display: flex;
+  display: none; /* Hide all testimonials initially */
   flex-direction: column;
-  justify-content: center;
-  height: 320px; /* Fixed height */
+  justify-content: space-between; /* Ensure spacing between elements */
+  min-height: 320px; /* Minimum height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds box */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
 .testimonial-content.active {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
-
-.testimonial-content.inactive {
-  transform: translateY(-50%) translateX(-100%);
+  display: flex; /* Show the active testimonial */
+  transform: translateX(0);
 }
 
 .testimonial-rating {
   font-size: 18px;
   color: #f39c12;
   margin-bottom: 10px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px; /* Reduced margin-top */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .testimonial-author img {
@@ -21278,7 +21370,7 @@ span.select2-selection.select2-selection--single:focus {
 .testimonial-thumbnails {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Increased spacing between the images */
+  gap: 10px; /* Reduced spacing between the images */
   position: absolute;
   right: -80px;
   top: 50%; /* Adjusted to center align thumbnails vertically */
@@ -21291,13 +21383,102 @@ span.select2-selection.select2-selection--single:focus {
   border-radius: 50%; /* Ensure images are perfectly round */
   cursor: pointer;
   transition: transform 0.3s;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced margin-bottom */
   object-fit: cover;
 }
 
 .testimonial-thumbnails img:hover {
   transform: scale(1.1);
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .testimonial-container {
+    max-width: 500px;
+  }
+
+  .testimonial-thumbnails {
+    right: -60px;
+  }
+
+  .testimonial-content {
+    min-height: 320px; /* Minimum height for this breakpoint */
+    padding: 20px; /* Adjusted padding */
+  }
+}
+
+@media (max-width: 992px) {
+  .testimonial-container {
+    max-width: 400px;
+  }
+
+  .testimonial-thumbnails {
+    right: -50px;
+    gap: 10px; /* Reduced gap */
+  }
+
+  .testimonial-content {
+    padding: 20px;
+    min-height: 320px; /* Minimum height for this breakpoint */
+    padding: 15px; /* Adjusted padding */
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-container {
+    max-width: 100%;
+  }
+
+  .testimonial-thumbnails {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .testimonial-thumbnails img {
+    margin-bottom: 0;
+  }
+
+  .testimonial-content {
+    position: static;
+    transform: none;
+    opacity: 1;
+    display: none; /* Hide all testimonials initially */
+    margin-bottom: 20px;
+    min-height: 320px; /* Minimum height for this breakpoint */
+    padding: 15px; /* Adjusted padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Include padding in height calculation */
+  }
+
+  .testimonial-content.active {
+    display: flex; /* Show only the active testimonial */
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonial-content {
+    padding: 10px;
+    min-height: 320px; /* Minimum height for this breakpoint */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Include padding in height calculation */
+  }
+
+  .author-info h5 {
+    font-size: 14px;
+  }
+
+  .author-info span {
+    font-size: 12px;
+  }
+
+  .testimonial-rating {
+    font-size: 16px;
+  }
+}
+
 
 
 /* Media Queries */
