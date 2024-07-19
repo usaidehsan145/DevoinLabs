@@ -19,11 +19,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Optional: Close the menu when clicking outside of it
+    // Close the menu when clicking outside of it
     document.addEventListener("click", function(event) {
         if (!sliderMenu.contains(event.target) && !menuButton.contains(event.target)) {
             sliderMenu.classList.remove("active");
         }
     });
+
+    // Close the menu when touching/swiping outside of it
+    document.addEventListener("touchstart", function(event) {
+        if (!sliderMenu.contains(event.target) && !menuButton.contains(event.target)) {
+            sliderMenu.classList.remove("active");
+        }
+    });
 });
-    
